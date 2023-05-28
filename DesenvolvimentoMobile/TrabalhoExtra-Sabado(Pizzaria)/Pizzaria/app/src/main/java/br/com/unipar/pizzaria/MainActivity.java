@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner spSabores;
     private ListView lvSabores;
+    private TextView tvPedido;
     private String saborSelecionado;
     private Button btAdd;
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         spSabores = findViewById(R.id.spSabores);
         lvSabores = findViewById(R.id.lvSabores);
+        tvPedido = findViewById(R.id.tvPedido);
 
         String[] vetorSabores = new String[]{"", "Strogonoff", "Frango c/ Catupiry"};
 
@@ -72,6 +76,31 @@ public class MainActivity extends AppCompatActivity {
         SaborLista adapter = new SaborLista(this, lista);
 
         lvSabores.setAdapter(adapter);
+
+    }
+
+    public void selecionarOpcao(View view) {
+        RadioButton radio = (RadioButton) view;
+        boolean checked = radio.isChecked();
+
+        switch (view.getId()){
+            case R.id.rbPequena:
+                AtualizaPedido(1, "Pequena");
+            case R.id.rbMedia:
+                AtualizaPedido(1, "Media");
+            case R.id.rbGrande:
+                AtualizaPedido(1, "Grande");
+        }
+
+
+    }
+
+    private void AtualizaPedido(int operacao, String text) {
+
+        switch (operacao){
+            case 1:
+                tvPedido.setText("Pizza "+text+" com os seguintes sabores");
+        }
 
     }
 }
