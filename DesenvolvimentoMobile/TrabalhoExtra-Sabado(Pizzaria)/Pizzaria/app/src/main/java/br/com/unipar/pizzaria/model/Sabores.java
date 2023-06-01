@@ -18,4 +18,9 @@ public class Sabores {
 
     public Sabores() {
     }
+
+    @Override
+    public String toString() {
+        return nomeSabor;
+    }
 }
