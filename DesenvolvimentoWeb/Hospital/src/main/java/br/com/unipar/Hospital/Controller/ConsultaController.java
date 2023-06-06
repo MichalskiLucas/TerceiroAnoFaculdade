@@ -1,5 +1,6 @@
 package br.com.unipar.Hospital.Controller;
 
+import br.com.unipar.Hospital.DTO.ConsultaDto;
 import br.com.unipar.Hospital.Model.Consulta;
 import br.com.unipar.Hospital.Service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,12 @@ public class ConsultaController {
     private ConsultaService consultaService;
 
     @PostMapping
-    public Consulta insertConsulta(@RequestBody Consulta consulta) throws Exception{
+    public ConsultaDto insertConsulta(@RequestBody Consulta consulta) throws Exception{
         return consultaService.insert(consulta);
     }
 
     @PutMapping
-    public Consulta updateConsulta(@RequestBody Consulta consulta) throws Exception{
+    public ConsultaDto updateConsulta(@RequestBody Consulta consulta) throws Exception{
         return consultaService.update(consulta);
     }
 

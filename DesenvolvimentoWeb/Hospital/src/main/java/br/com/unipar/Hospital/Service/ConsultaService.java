@@ -1,5 +1,6 @@
 package br.com.unipar.Hospital.Service;
 
+import br.com.unipar.Hospital.DTO.ConsultaDto;
 import br.com.unipar.Hospital.Model.Consulta;
 import br.com.unipar.Hospital.Repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,16 @@ public class ConsultaService {
     @Autowired
     private ConsultaRepository consultaRepository;
 
-    public Consulta insert (Consulta consulta) throws Exception{
+    public ConsultaDto insert (Consulta consulta) throws Exception{
         validaInsercaoConsulta(consulta);
         consultaRepository.saveAndFlush(consulta);
-        return consulta;
+        return ConsultaDto.getInstance(consulta);
     }
 
-    public Consulta update(Consulta consulta) throws Exception{
+    public ConsultaDto update(Consulta consulta) throws Exception{
         validaUpdate(consulta);
         consultaRepository.saveAndFlush(consulta);
-        return consulta;
+        return ConsultaDto.getInstance(consulta);
     }
 
     public List<Consulta> findAll(){
