@@ -3,6 +3,9 @@ package br.com.unipar.Hospital.Model;
 import br.com.unipar.Hospital.Enum.EspecialidadeEnum;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MEDICO")
@@ -13,27 +16,47 @@ public class Medico {
     private Long id;
 
     @Column(length = 100)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String nome;
 
     @Column(length = 20)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String telefone;
 
     @Column(length = 50)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String email;
 
     @Column(length = 6)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String crm;
 
     @OneToOne
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private Endereco endereco;
 
     @Enumerated(EnumType.STRING)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private EspecialidadeEnum especialidade;
+
+    private boolean ativo = true;
 
     public Medico() {
     }
 
-    public Medico(Long id, String nome, String telefone, String email, String crm, Endereco endereco, EspecialidadeEnum especialidade) {
+    public Medico(Long id, String nome, String telefone, String email, String crm, Endereco endereco, EspecialidadeEnum especialidade, boolean ativo) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
@@ -41,6 +64,15 @@ public class Medico {
         this.crm = crm;
         this.endereco = endereco;
         this.especialidade = especialidade;
+        this.ativo = ativo;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public Long getId() {

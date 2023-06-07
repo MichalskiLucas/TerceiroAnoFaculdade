@@ -1,6 +1,5 @@
 package br.com.unipar.Hospital.Service;
 
-import br.com.unipar.Hospital.Model.Endereco;
 import br.com.unipar.Hospital.Model.Paciente;
 import br.com.unipar.Hospital.Repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class PacienteService {
     }
 
     public List<Paciente> findAll(){
-        return pacienteRepository.findAll();
+        return pacienteRepository.findAllByOrderByNome();
     }
 
     public Paciente findById(Long id) throws Exception {
@@ -41,9 +40,30 @@ public class PacienteService {
         }
     }
 
+    public Paciente deletaPaciente(Long id) throws Exception{
+        Optional<Paciente> paciente = pacienteRepository.findById(id);
+        Paciente pacienteObject = new Paciente();
+        pacienteObject.setId(paciente.get().getId());
+        pacienteObject.setCpf(paciente.get().getCpf());
+        pacienteObject.setEmail(paciente.get().getEmail());
+        pacienteObject.setEndereco(paciente.get().getEndereco());
+        pacienteObject.setNome(paciente.get().getNome());
+        pacienteObject.setTelefone(paciente.get().getTelefone());
+        pacienteObject.setAtivo(false);
+        return pacienteRepository.saveAndFlush(pacienteObject);
+    }
+
     private void validaUpdatePaciente(Paciente paciente) throws Exception{
         if(paciente.getId() == null){
             throw new Exception("É necessário informar o ID para atualizar o cadastro do paciente");
+        }
+
+        Optional<Paciente> pacienteValidate = pacienteRepository.findById(paciente.getId());
+        if(pacienteValidate.get().getCpf() != paciente.getCpf()){
+            throw new Exception("Não é permitido atualizar o CPF do paciente");
+        }
+        if(pacienteValidate.get().getEmail() != paciente.getEmail()){
+            throw new Exception("Não é permitido atualizar o E-mail do paciente");
         }
 
     }

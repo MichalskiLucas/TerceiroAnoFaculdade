@@ -1,6 +1,9 @@
 package br.com.unipar.Hospital.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ENDERECO")
@@ -11,18 +14,33 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 100)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String logradouro;
     @Column(length = 10)
     private String numero;
     @Column(length = 100)
     private String complemento;
     @Column(length = 100)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String bairro;
     @Column(length = 100)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String cidade;
     @Column(length = 2)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String uf;
     @Column(length = 10)
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String cep;
 
     public Endereco(Long id, String logradouro, String numero, String complemento, String bairro, String cidade, String uf, String cep) {

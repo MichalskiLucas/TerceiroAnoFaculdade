@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/paciente")
@@ -21,6 +22,11 @@ public class PacienteController {
     @PutMapping
     public Paciente updatePaciente(@RequestBody Paciente paciente) throws Exception{
         return pacienteService.update(paciente);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public Paciente deletePaciente(@PathVariable Long id) throws Exception{
+        return pacienteService.deletaPaciente(id);
     }
 
     @GetMapping

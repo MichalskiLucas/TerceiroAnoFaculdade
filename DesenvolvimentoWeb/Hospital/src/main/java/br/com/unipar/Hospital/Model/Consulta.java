@@ -22,14 +22,26 @@ public class Consulta {
     @Column
     private Date dataHora;
 
-    public Consulta(Long id, Paciente paciente, Medico medico, Date dataHora) {
+    @Column(length = 100)
+    private String motivoCancelamento;
+
+    public Consulta() {
+    }
+
+    public Consulta(Long id, Paciente paciente, Medico medico, Date dataHora, String motivoCancelamento) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;
         this.dataHora = dataHora;
+        this.motivoCancelamento = motivoCancelamento;
     }
 
-    public Consulta() {
+    public String getMotivoCancelamento() {
+        return motivoCancelamento;
+    }
+
+    public void setMotivoCancelamento(String motivoCancelamento) {
+        this.motivoCancelamento = motivoCancelamento;
     }
 
     public Long getId() {

@@ -2,6 +2,7 @@ package br.com.unipar.Hospital.Controller;
 
 import br.com.unipar.Hospital.Model.Medico;
 import br.com.unipar.Hospital.Service.MedicoService;
+import org.hibernate.annotations.OrderBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

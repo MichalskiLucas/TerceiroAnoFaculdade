@@ -4,8 +4,10 @@ import br.com.unipar.Hospital.Enum.EspecialidadeEnum;
 import br.com.unipar.Hospital.Model.Medico;
 import br.com.unipar.Hospital.Repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.OrderBy;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +29,8 @@ public class MedicoService {
         return medico;
     }
 
-    public List<Medico> findAll(){
-        return medicoRepository.findAll();
+    public List<Medico> findAll() {
+        return medicoRepository.findAllByOrderByNome();
     }
 
     public Medico findById(Long id) throws Exception {
