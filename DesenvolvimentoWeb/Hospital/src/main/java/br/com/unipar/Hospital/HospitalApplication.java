@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 public class HospitalApplication {
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(HospitalApplication.class, args);
 	}
