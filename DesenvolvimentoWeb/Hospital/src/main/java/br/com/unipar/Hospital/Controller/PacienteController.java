@@ -1,12 +1,12 @@
 package br.com.unipar.Hospital.Controller;
 
+import br.com.unipar.Hospital.DTO.PacienteDto;
 import br.com.unipar.Hospital.Model.Paciente;
 import br.com.unipar.Hospital.Service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/paciente")
@@ -30,7 +30,7 @@ public class PacienteController {
     }
 
     @GetMapping
-    public List<Paciente> findAll() throws Exception {
+    public List<PacienteDto> findAll() throws Exception {
         return pacienteService.findAll();
     }
 

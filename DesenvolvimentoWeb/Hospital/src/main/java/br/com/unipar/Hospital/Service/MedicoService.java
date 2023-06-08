@@ -1,12 +1,13 @@
 package br.com.unipar.Hospital.Service;
 
+import br.com.unipar.Hospital.DTO.MedicoDto;
 import br.com.unipar.Hospital.Enum.EspecialidadeEnum;
 import br.com.unipar.Hospital.Model.Medico;
-import br.com.unipar.Hospital.Model.Paciente;
 import br.com.unipar.Hospital.Repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +29,20 @@ public class MedicoService {
         return medico;
     }
 
-    public List<Medico> findAll() {
-        return medicoRepository.findAllByOrderByNome();
+    public List<MedicoDto> findAll() {
+        List<Medico> medicos = medicoRepository.findAllByOrderByNome();
+        List<MedicoDto> dtos = new ArrayList<>();
+
+        for (int i = 0; i < medicos.size(); i++){
+            MedicoDto dto = new MedicoDto();
+            dto.setNome(medicos.get(i).getNome());
+            dto.setCrm(medicos.get(i).getCrm());
+            dto.setEspecialidade(medicos.get(i).getEspecialidade());
+            dto.setEmail(medicos.get(i).getEmail());
+
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
     public Medico findById(Long id) throws Exception {
@@ -54,6 +67,7 @@ public class MedicoService {
         medicoObject.setAtivo(false);
         return medicoRepository.saveAndFlush(medicoObject);
     }
+
     private void validaInsercaoMedico(Medico medico) throws Exception{
         if (medico.getId() != null){
             throw new Exception("Não é necessário informar o ID para inserir o medico");

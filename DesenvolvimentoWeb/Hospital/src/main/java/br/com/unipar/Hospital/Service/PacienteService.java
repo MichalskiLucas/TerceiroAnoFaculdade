@@ -1,10 +1,12 @@
 package br.com.unipar.Hospital.Service;
 
+import br.com.unipar.Hospital.DTO.PacienteDto;
 import br.com.unipar.Hospital.Model.Paciente;
 import br.com.unipar.Hospital.Repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +28,17 @@ public class PacienteService {
         return paciente;
     }
 
-    public List<Paciente> findAll(){
-        return pacienteRepository.findAllByOrderByNome();
+    public List<PacienteDto> findAll(){
+        List<Paciente> pacientes = pacienteRepository.findAllByOrderByNome();
+        List<PacienteDto> dtos = new ArrayList<>();
+        for (int i = 0; i < pacientes.size(); i++){
+            PacienteDto dto = new PacienteDto();
+            dto.setCpf(pacientes.get(i).getCpf());
+            dto.setNome(pacientes.get(i).getNome());
+            dto.setTelefone(pacientes.get(i).getTelefone());
+            dtos.add(dto);
+        }
+        return dtos;
     }
 
     public Paciente findById(Long id) throws Exception {

@@ -1,6 +1,7 @@
 package br.com.unipar.Hospital.Service;
 
 import br.com.unipar.Hospital.DTO.ConsultaDto;
+import br.com.unipar.Hospital.Enum.MotivoCancelamentoEnum;
 import br.com.unipar.Hospital.Model.Consulta;
 import br.com.unipar.Hospital.Model.Medico;
 import br.com.unipar.Hospital.Model.Paciente;
@@ -35,12 +36,6 @@ public class ConsultaService {
         return ConsultaDto.getInstance(consulta);
     }
 
-    public ConsultaDto update(Consulta consulta) throws Exception{
-        validaUpdate(consulta);
-        consultaRepository.saveAndFlush(consulta);
-        return ConsultaDto.getInstance(consulta);
-    }
-
     public List<Consulta> findAll(){
         return consultaRepository.findAll();
     }
@@ -55,9 +50,54 @@ public class ConsultaService {
         }
     }
 
-    private void validaUpdate(Consulta consulta) throws Exception{
-        if (consulta.getId() == null){
-            throw new Exception("É necessário informar o ID para atualizar a consulta");
+    public Consulta cancelaConsulta(Consulta consulta) throws Exception{
+        Consulta consultaCancelada  = validaCancelamento(consulta);
+        return consultaRepository.saveAndFlush(consultaCancelada);
+    }
+
+    private Consulta validaCancelamento(Consulta consulta) throws Exception{
+        if(consulta.getMotivoCancelamento() == null){
+            throw new Exception("Para cancelar a consulta é necessário informar o motivo");
+        }
+
+        if(consulta.getId() == null){
+            throw new Exception("Para cancelar a consulta é necessário informar o id da consulta");
+        }
+
+        return validaAntecedenciaConsulta(consulta);
+    }
+
+    private Consulta validaAntecedenciaConsulta(Consulta consulta) throws Exception{
+
+        Optional<Consulta> consultaValidate  = consultaRepository.findById(consulta.getId());
+        Consulta consultaReturn = new Consulta();
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        Instant instant = consultaValidate.get().getDataHora().toInstant();
+        LocalDateTime dataTemporal = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+        Long horasDiferenca = ChronoUnit.HOURS.between(currentDateTime, dataTemporal);
+        if (horasDiferenca < 24){
+            throw new Exception("Para cancelar uma consulta é necessário que seja cancelada com 24 horas de antecedencia");
+        }
+        consultaReturn = consultaValidate.get();
+        if(consultaReturn.getMotivoCancelamento() != null){
+            throw new Exception("Consulta ja esta cancelada");
+        }
+        validaMotivoCancelamento(consulta);
+        consultaReturn.setMotivoCancelamento(consulta.getMotivoCancelamento());
+        return consultaReturn;
+    }
+
+    private void validaMotivoCancelamento(Consulta consulta) throws Exception{
+        if (consulta.getMotivoCancelamento().equals(MotivoCancelamentoEnum.MEDICO_CANCELOU)){
+            return;
+        } else if (consulta.getMotivoCancelamento().equals(MotivoCancelamentoEnum.PACIENTE_DESISTIU)) {
+            return;
+        } else if (consulta.getMotivoCancelamento().equals(MotivoCancelamentoEnum.OUTROS)) {
+            return;
+        }else{
+            throw new Exception("Motivo de cancelamento incorreto");
         }
     }
 

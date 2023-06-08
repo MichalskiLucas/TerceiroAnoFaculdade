@@ -1,6 +1,7 @@
 package br.com.unipar.Hospital.Model;
 
 import br.com.unipar.Hospital.Enum.EspecialidadeEnum;
+import io.swagger.annotations.Api;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "MEDICO")
+@Api
 public class Medico {
 
     @Id

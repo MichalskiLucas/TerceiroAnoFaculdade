@@ -20,9 +20,9 @@ public class ConsultaController {
         return consultaService.insert(consulta);
     }
 
-    @PutMapping
-    public ConsultaDto updateConsulta(@RequestBody Consulta consulta) throws Exception{
-        return consultaService.update(consulta);
+    @PutMapping(path = "/cancelar")
+    public Consulta cancelaConsulta(@RequestBody Consulta consulta)throws Exception{
+        return consultaService.cancelaConsulta(consulta);
     }
 
     @GetMapping

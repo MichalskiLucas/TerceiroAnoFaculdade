@@ -1,9 +1,8 @@
 package br.com.unipar.Hospital.Controller;
 
+import br.com.unipar.Hospital.DTO.MedicoDto;
 import br.com.unipar.Hospital.Model.Medico;
-import br.com.unipar.Hospital.Model.Paciente;
 import br.com.unipar.Hospital.Service.MedicoService;
-import org.hibernate.annotations.OrderBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,7 @@ public class MedicoController {
     }
 
     @GetMapping
-    public List<Medico> findAll() throws Exception {
+    public List<MedicoDto> findAll() throws Exception {
         return medicoService.findAll();
     }
 

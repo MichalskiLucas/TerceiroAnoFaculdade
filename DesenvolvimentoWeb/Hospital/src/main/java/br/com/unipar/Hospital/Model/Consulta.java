@@ -1,13 +1,15 @@
 package br.com.unipar.Hospital.Model;
 
+import br.com.unipar.Hospital.Enum.MotivoCancelamentoEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+import io.swagger.annotations.Api;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "CONSULTA")
+@Api
 public class Consulta {
 
     @Id
@@ -23,24 +25,25 @@ public class Consulta {
     private Date dataHora;
 
     @Column(length = 100)
-    private String motivoCancelamento;
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamentoEnum motivoCancelamento;
 
     public Consulta() {
     }
 
-    public Consulta(Long id, Paciente paciente, Medico medico, Date dataHora, String motivoCancelamento) {
+    public MotivoCancelamentoEnum getMotivoCancelamento() {
+        return motivoCancelamento;
+    }
+
+    public void setMotivoCancelamento(MotivoCancelamentoEnum motivoCancelamento) {
+        this.motivoCancelamento = motivoCancelamento;
+    }
+
+    public Consulta(Long id, Paciente paciente, Medico medico, Date dataHora, MotivoCancelamentoEnum motivoCancelamento) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;
         this.dataHora = dataHora;
-        this.motivoCancelamento = motivoCancelamento;
-    }
-
-    public String getMotivoCancelamento() {
-        return motivoCancelamento;
-    }
-
-    public void setMotivoCancelamento(String motivoCancelamento) {
         this.motivoCancelamento = motivoCancelamento;
     }
 
