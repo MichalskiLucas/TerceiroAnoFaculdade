@@ -1,6 +1,7 @@
 package br.com.unipar.Hospital.Controller;
 
 import br.com.unipar.Hospital.Model.Medico;
+import br.com.unipar.Hospital.Model.Paciente;
 import br.com.unipar.Hospital.Service.MedicoService;
 import org.hibernate.annotations.OrderBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class MedicoController {
     @PutMapping
     public Medico updatePaciente(@RequestBody Medico paciente) throws Exception{
         return medicoService.update(paciente);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public Medico deleteMedico(@PathVariable Long id) throws Exception{
+        return medicoService.deletaMedico(id);
     }
 
     @GetMapping

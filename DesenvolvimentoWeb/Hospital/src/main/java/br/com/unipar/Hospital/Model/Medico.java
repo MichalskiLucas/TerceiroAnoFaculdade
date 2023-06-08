@@ -40,15 +40,9 @@ public class Medico {
     private String crm;
 
     @OneToOne
-    @NotBlank
-    @NotEmpty
-    @NotNull
     private Endereco endereco;
 
     @Enumerated(EnumType.STRING)
-    @NotBlank
-    @NotEmpty
-    @NotNull
     private EspecialidadeEnum especialidade;
 
     private boolean ativo = true;

@@ -2,12 +2,11 @@ package br.com.unipar.Hospital.Service;
 
 import br.com.unipar.Hospital.Enum.EspecialidadeEnum;
 import br.com.unipar.Hospital.Model.Medico;
+import br.com.unipar.Hospital.Model.Paciente;
 import br.com.unipar.Hospital.Repository.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.OrderBy;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +42,18 @@ public class MedicoService {
         }
     }
 
+    public Medico deletaMedico(Long id) throws Exception{
+        Optional<Medico> medico = medicoRepository.findById(id);
+        Medico medicoObject = new Medico();
+        medicoObject.setId(medico.get().getId());
+        medicoObject.setCrm(medico.get().getCrm());
+        medicoObject.setEmail(medico.get().getEmail());
+        medicoObject.setEndereco(medico.get().getEndereco());
+        medicoObject.setNome(medico.get().getNome());
+        medicoObject.setTelefone(medico.get().getTelefone());
+        medicoObject.setAtivo(false);
+        return medicoRepository.saveAndFlush(medicoObject);
+    }
     private void validaInsercaoMedico(Medico medico) throws Exception{
         if (medico.getId() != null){
             throw new Exception("Não é necessário informar o ID para inserir o medico");
@@ -111,6 +122,17 @@ public class MedicoService {
     private void validaUpdate(Medico medico) throws Exception{
         if(medico.getId() == null){
             throw new Exception("É necessário informar o ID para atualizar o cadastro do medico");
+        }
+
+        Optional<Medico> medicoValidade = medicoRepository.findById(medico.getId());
+        if(medicoValidade.get().getCrm() != medico.getCrm()){
+            throw new Exception("Não é permitido atualizar o CRM do medico");
+        }
+        if(medicoValidade.get().getEmail() != medico.getEmail()){
+            throw new Exception("Não é permitido atualizar o E-mail do mecico");
+        }
+        if(medicoValidade.get().getEspecialidade() != medico.getEspecialidade()){
+            throw new Exception("Não é possivel atualizar a especialidade do medico");
         }
     }
 

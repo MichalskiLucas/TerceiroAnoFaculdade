@@ -18,7 +18,7 @@ public class Consulta {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Medico medico;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", locale = "pt-BR", timezone = "UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", locale = "pt-BR", timezone = "America/Sao_Paulo")
     @Column
     private Date dataHora;
 
