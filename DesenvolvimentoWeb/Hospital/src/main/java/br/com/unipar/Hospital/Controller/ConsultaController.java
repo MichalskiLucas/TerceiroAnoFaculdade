@@ -4,6 +4,8 @@ import br.com.unipar.Hospital.DTO.ConsultaDto;
 import br.com.unipar.Hospital.Model.Consulta;
 import br.com.unipar.Hospital.Service.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
