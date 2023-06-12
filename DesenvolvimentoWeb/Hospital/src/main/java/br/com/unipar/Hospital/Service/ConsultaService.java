@@ -103,7 +103,7 @@ public class ConsultaService {
 
     private void validaInsercaoConsulta(Consulta consulta) throws Exception{
         if (consulta.getId() != null){
-            throw new Exception("Não é necessário informar o ID para cadastrar uma receita");
+            throw new Exception("Não é necessário informar o ID para cadastrar uma Consulta");
         }
 
         validaConsulta(consulta);
