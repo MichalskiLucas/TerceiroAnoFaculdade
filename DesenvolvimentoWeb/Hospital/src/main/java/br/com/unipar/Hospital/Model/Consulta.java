@@ -3,13 +3,14 @@ package br.com.unipar.Hospital.Model;
 import br.com.unipar.Hospital.Enum.MotivoCancelamentoEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "CONSULTA")
-@Api
+@ApiModel(description = "Modelo de representação da Consulta")
 public class Consulta {
 
     @Id

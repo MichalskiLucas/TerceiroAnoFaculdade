@@ -1,6 +1,7 @@
 package br.com.unipar.Hospital.Model;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ENDERECO")
-@Api
+@ApiModel(description = "Modelo de representação de Endereço")
 public class Endereco {
 
     @Id

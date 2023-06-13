@@ -1,5 +1,7 @@
 package br.com.unipar.Hospital.Model;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "USUARIO")
+@ApiModel(description = "Modelo de representação da Usuarios")
 public class Usuario {
 
 	@Id

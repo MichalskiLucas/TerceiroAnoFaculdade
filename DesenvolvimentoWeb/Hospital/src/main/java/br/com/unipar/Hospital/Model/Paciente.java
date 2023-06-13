@@ -1,6 +1,7 @@
 package br.com.unipar.Hospital.Model;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PACIENTE")
-@Api
+@ApiModel(description = "Modelo de representação de Pacientes")
 public class Paciente {
 
     @Id
