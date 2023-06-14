@@ -1,14 +1,15 @@
 package br.com.unipar.Hospital.Repository;
 
-import br.com.unipar.Hospital.Model.Consulta;
-import br.com.unipar.Hospital.Model.Medico;
-import br.com.unipar.Hospital.Model.Paciente;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.List;
+import br.com.unipar.Hospital.Model.Consulta;
+import br.com.unipar.Hospital.Model.Medico;
+import br.com.unipar.Hospital.Model.Paciente;
 
 @Repository
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
