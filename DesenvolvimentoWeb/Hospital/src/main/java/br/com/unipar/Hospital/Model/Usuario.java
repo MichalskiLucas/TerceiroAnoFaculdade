@@ -39,6 +39,8 @@ public class Usuario {
 	@NotNull
 	private String senha;
 
+	private boolean ativo = true;
+
 	public Long getId() {
 		return id;
 	}
@@ -71,12 +73,21 @@ public class Usuario {
 		this.senha = senha;
 	}
 
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	public Usuario(Long id, @NotBlank @NotEmpty @NotNull String nome, @NotBlank @NotEmpty @NotNull String usuarioAd,
-			@NotBlank @NotEmpty @NotNull String senha) {
+			@NotBlank @NotEmpty @NotNull String senha, boolean ativo) {
 		this.id = id;
 		this.nome = nome;
 		this.usuarioAd = usuarioAd;
 		this.senha = senha;
+		this.ativo = ativo;
 	}
 
 	public Usuario() {
@@ -84,7 +95,8 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", usuarioAd=" + usuarioAd + ", senha=" + senha + "]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", usuarioAd=" + usuarioAd + ", senha=" + senha + ", ativo="
+				+ ativo + "]";
 	}
 
 }
