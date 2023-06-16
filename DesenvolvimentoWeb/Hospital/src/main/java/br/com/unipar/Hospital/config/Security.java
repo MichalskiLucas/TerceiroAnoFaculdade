@@ -39,11 +39,10 @@ public class Security extends WebSecurityConfigurerAdapter {
 //		for (Usuario usuario : usuarios) {
 //			auth.inMemoryAuthentication().withUser("lucas").password("123").roles("ADMIN");
 //		}
-		System.out.println("teste kls: " + auth.toString());
-		auth.inMemoryAuthentication().withUser("lucas").password("123").roles("ADMIN");
-		
-		auth.inMemoryAuthentication().withUser("kedssy").password("123").roles("ADMIN");
-		System.out.println("teste kls: " + auth.toString());
+		auth.inMemoryAuthentication().withUser("lucas.michalski").password("123").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("trabalho").password("123").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("anderson.bosing").password("123").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("kedssy.luan").password("123").roles("ADMIN");
 	}
 
 	@Bean
