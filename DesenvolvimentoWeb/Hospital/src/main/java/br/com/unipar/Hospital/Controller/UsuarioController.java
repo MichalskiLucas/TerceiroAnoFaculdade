@@ -1,5 +1,6 @@
 package br.com.unipar.Hospital.Controller;
 
+import br.com.unipar.Hospital.Model.Medico;
 import br.com.unipar.Hospital.Model.Usuario;
 import br.com.unipar.Hospital.Service.UsuarioService;
 
@@ -29,5 +30,10 @@ public class UsuarioController {
     @GetMapping(path = "/{id}")
     public Usuario findById(@PathVariable Long id) throws Exception {
         return usuarioService.findById(id);
+    }
+    
+    @DeleteMapping(path = "/{id}")
+    public Usuario delete(@PathVariable Long id) throws Exception{
+        return usuarioService.delete(id);
     }
 }

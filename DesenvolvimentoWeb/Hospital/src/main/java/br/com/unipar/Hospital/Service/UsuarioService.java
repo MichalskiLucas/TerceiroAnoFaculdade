@@ -1,5 +1,6 @@
 package br.com.unipar.Hospital.Service;
 
+import br.com.unipar.Hospital.Model.Medico;
 import br.com.unipar.Hospital.Model.Usuario;
 import br.com.unipar.Hospital.Repository.UsuarioRepository;
 
@@ -41,6 +42,17 @@ public class UsuarioService {
 			throw new Exception("Usuario não encontrado para o id (" + id + "). Verifique");
 		}
 	}
+	
+	public Usuario delete(Long id) throws Exception{
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        Usuario usuarioObject = new Usuario();
+        usuarioObject.setId(usuario.get().getId());
+        usuarioObject.setNome(usuario.get().getNome());
+        usuarioObject.setUsuarioAd(usuario.get().getUsuarioAd());
+        usuarioObject.setSenha(usuario.get().getSenha());
+        usuarioObject.setAtivo(false);
+        return usuarioRepository.saveAndFlush(usuarioObject);
+    }
 
 	private void validaUpdatePaciente(Usuario usuario) throws Exception {
 		if (usuario.getId() == null) {
