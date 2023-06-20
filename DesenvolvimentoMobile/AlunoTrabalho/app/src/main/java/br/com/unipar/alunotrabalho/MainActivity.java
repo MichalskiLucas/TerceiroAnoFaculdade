@@ -225,11 +225,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> disciplinas = new ArrayList<>();
         ArrayList<String> lista = new ArrayList<>();
         boolean fim = false;
-        String materiaAtual = "";
+        String disciplinaAtual = "";
         for(Aluno aluno : listaAlunos){
             if(aluno.getRa().equals(alunoSelecionado.getRa())){
                 for(Bimestre notaBimestre : aluno.getNotasBimestre()){
-                    materiaAtual = notaBimestre.getDisciplina();
+                    disciplinaAtual = notaBimestre.getDisciplina();
                     for(String disciplina : disciplinas){
                         if(notaBimestre.getDisciplina() == disciplina){
                             fim = true;
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if(!fim){
                         for(Bimestre notaCalculada : alunoSelecionado.getNotasBimestre()){
-                            if (materiaAtual.equals(notaCalculada.getDisciplina())){
+                            if (disciplinaAtual.equals(notaCalculada.getDisciplina())){
                                 if(notaCalculada.getBimestre().equals("1º Bimestre")){
                                     nota1bimestre = notaCalculada.getNota().toString();
                                 }else if(notaCalculada.getBimestre().equals("2º Bimestre")){
@@ -249,9 +249,22 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         }
-                        linha = "1Bim: "+nota1bimestre+" 2Bim: "+nota2bimestre + "3Bim: "+nota3bimestre+"4Bim: "+nota4bimestre;
+                        linha = "1Bim: "+nota1bimestre+" 2Bim: "+nota2bimestre + " 3Bim: "+nota3bimestre+" 4Bim: "+nota4bimestre;
+                        if (nota1bimestre == ""){
+                            nota1bimestre = "0";
+                        }
+                        if (nota2bimestre == ""){
+                            nota2bimestre = "0";
+                        }
+                        if (nota3bimestre == ""){
+                            nota3bimestre = "0";
+                        }
+                        if (nota4bimestre == ""){
+                            nota4bimestre = "0";
+                        }
                         int media = (Integer.parseInt(nota1bimestre) + Integer.parseInt(nota2bimestre) + Integer.parseInt(nota3bimestre) + Integer.parseInt(nota4bimestre)) / 4;
-                        linha1 = "media: "+media;
+                        linha1 = (disciplinaAtual+"                             ").substring(0, 28) + "MÉDIA: " + media;
+
                         fim = false;
                         nota1bimestre = "";
                         nota2bimestre = "";
@@ -267,11 +280,10 @@ public class MainActivity extends AppCompatActivity {
         lvNota.setAdapter(new NotaAdapter(this, lista));
     }
 
-    @SuppressLint("MissingInflatedId")
     public void verMedias(View view){
         setContentView(R.layout.activity_media);
 
-        spDisciplinaM = findViewById(R.id.spDisciplina);
+        spDisciplinaM = findViewById(R.id.spDisciplinaM);
         spDisciplinaM.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, vetorDisciplina));
         spDisciplinaM.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -326,13 +338,26 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-                Double media = (Double.parseDouble(nota1bimestre) +
-                        Double.parseDouble(nota2bimestre) +
-                        Double.parseDouble(nota3bimestre) +
-                        Double.parseDouble(nota4bimestre))/4;
+                if (nota1bimestre == ""){
+                    nota1bimestre = "0";
+                }
+                if (nota2bimestre == ""){
+                    nota2bimestre = "0";
+                }
+                if (nota3bimestre == ""){
+                    nota3bimestre = "0";
+                }
+                if (nota4bimestre == ""){
+                    nota4bimestre = "0";
+                }
 
-                linha = (aluno.getRa() + "       ").substring(0, 29) + "MÉDIA: " + media;
-                linha1 = (aluno.getNome() +"       ").substring(0, 29)+ (media >= 60 ? "APROVADO" : "REPROVADO");
+                int media = (nvl(Integer.parseInt(nota1bimestre), 0)+
+                                nvl(Integer.parseInt(nota2bimestre), 0) +
+                                nvl(Integer.parseInt(nota3bimestre), 0)+
+                                nvl(Integer.parseInt(nota4bimestre), 0))/4;
+
+                linha = (aluno.getRa() + "                             ").substring(0, 29) + "MÉDIA: " + media;
+                linha1 = (aluno.getNome() +"                             ").substring(0, 29)+ (media >= 60 ? "APROVADO" : "REPROVADO");
                 nota1bimestre = "";
                 nota2bimestre = "";
                 nota3bimestre = "";
@@ -343,6 +368,10 @@ public class MainActivity extends AppCompatActivity {
         lvDisciplinaM = findViewById(R.id.lvDisciplinaM);
         lvDisciplinaM.setAdapter(new MediaAdapter(this, lista));
     }
+    public static <T> T nvl(T valor, T valorPadrao) {
+        return valor != null ? valor : valorPadrao;
+    }
+
 
 
 }
