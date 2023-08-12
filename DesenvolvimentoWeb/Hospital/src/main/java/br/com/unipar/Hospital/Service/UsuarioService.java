@@ -4,6 +4,7 @@ import br.com.unipar.Hospital.Model.Medico;
 import br.com.unipar.Hospital.Model.Usuario;
 import br.com.unipar.Hospital.Repository.UsuarioRepository;
 
+import br.com.unipar.Hospital.Service.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IUsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -54,14 +55,14 @@ public class UsuarioService {
         return usuarioRepository.saveAndFlush(usuarioObject);
     }
 
-	private void validaUpdatePaciente(Usuario usuario) throws Exception {
+	public void validaUpdatePaciente(Usuario usuario) throws Exception {
 		if (usuario.getId() == null) {
 			throw new Exception("É necessário informar o ID para atualizar o cadastro do usuario");
 		}
 
 	}
 
-	private void validaInsercaoPaciente(Usuario usuario) throws Exception {
+	public void validaInsercaoPaciente(Usuario usuario) throws Exception {
 		if (usuario.getId() != null) {
 			throw new Exception("Não é necessário informar o ID para inserir o usuario");
 		}
