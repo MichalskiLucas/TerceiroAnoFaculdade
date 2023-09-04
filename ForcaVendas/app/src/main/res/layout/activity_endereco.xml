@@ -5,69 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ItemActivity">
+    tools:context=".EnderecoActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastro de Itens"
+        android:text="Cadastro de Endereço"
         android:textSize="30dp"
-        android:onClick="ItemActivity"
-        android:textStyle="bold"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_margin="10dp"
-        android:text="Codigo:"
-        android:textSize="20dp"/>
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Codigo" android:layout_marginTop="20dp"
+       android:textSize="20dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-       android:id="@+id/cdItem"
-        android:hint="Codigo"/>
+        android:id="@+id/cdEndereco"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_margin="10dp"
-        android:text="Descrição:"
+        android:text="Logradouro"
         android:textSize="20dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/dsItem"
-        android:hint="Descrição"/>
+        android:id="@+id/nmLogradouro"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_margin="10dp"
-        android:text="Valor Unitario:"
+        android:text="Numero"
         android:textSize="20dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/vlUnit"
-        android:hint="Valor Unitario"/>
+        android:id="@+id/cdNumero"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:layout_margin="10dp"
-        android:text="Unidade de Medida:"
+        android:text="Bairro"
         android:textSize="20dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/unMedida"
-        android:hint="Unidade de medida"/>
+        android:id="@+id/nmBairro"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cidade"
+        android:textSize="20dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nmCidade"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="UF"
+        android:textSize="20dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sgEstado"/>
+
 
 
     <Button
@@ -84,6 +86,8 @@
         android:text="Voltar"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"/>
+
+
 
 
 </LinearLayout>
