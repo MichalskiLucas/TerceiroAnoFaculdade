@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class UserManager {
 
-    private Map<String, Object> user = new HashMap<>();
+    private Map<Usuario, Object> user = new HashMap<>();
     private static UserManager instance = new UserManager();
 
     public UserManager() {
@@ -15,11 +15,11 @@ public class UserManager {
         return instance;
     }
 
-    public void set(String key, Object value){
+    public void set(Usuario key, Object value){
         user.put(key, value);
     }
 
-    public Object get(String key){
+    public Object get(Usuario key){
         return user.get(key);
     }
 
