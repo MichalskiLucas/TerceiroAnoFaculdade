@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2773d5b4-deb7-454c-81b6-f1991a77d09e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Box.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CompositeBox.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DeliveryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/product/Juice.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/product/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/product/Toxies.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_FactoryMethod/src/main/java/org/example/ProdutoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_FactoryMethod/src/main/java/org/example/ProdutoController2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_FactoryMethod/src/main/java/org/example/hamburguerAngus/AngusViewEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_FactoryMethod/src/main/java/org/example/hamburguerAngus/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_FactoryMethod/src/main/java/org/example/hamburguerAngus/ViewEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_FactoryMethod/src/main/java/org/example/hamburguerVegano/VeganController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_FactoryMethod/src/main/java/org/example/hamburguerVegano/VeganViewEngine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_Observed/src/main/java/org/example/DataSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_Observed/src/main/java/org/example/Observer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_Observed/src/main/java/org/example/StatusBar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_Observed/src/main/java/org/example/StockListView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DesignPattern_Observed/src/main/java/org/example/Subject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PaymentPattern/src/main/java/org/example/BitcoinPaymentForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PaymentPattern/src/main/java/org/example/CreditCardPaymentForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PaymentPattern/src/main/java/org/example/MoneyPaymentForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PaymentPattern/src/main/java/org/example/PayPalPaymentForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PaymentPattern/src/main/java/org/example/Payment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PaymentPattern/src/main/java/org/example/PaymentForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Qualidade/Decorator/src/main/java/org/example/Notificacao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Qualidade/Decorator/src/main/java/org/example/Notifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Qualidade/Decorator/src/main/java/org/example/SendSms.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Qualidade/Decorator/src/main/java/org/example/SendWhatsApp.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2U8GB0JzSxbvXvlhqIAdcoq5Li1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/lucasmichalski/Documents/GitHub/TerceiroAnoFaculdade/Frameworks/Atividade&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/lucasmichalski/Documents/GitHub/TerceiroAnoFaculdade/Frameworks/Atividade/src/main/java/org/example/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2773d5b4-deb7-454c-81b6-f1991a77d09e" name="Changes" comment="" />
+      <created>1692313655151</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692313655151</updated>
+      <workItem from="1692313656268" duration="3405000" />
+      <workItem from="1693261154283" duration="930000" />
+      <workItem from="1695941211734" duration="81000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,0 +1,5 @@
+br\com\unipar\frameworks\designpatterns_adapter\Image.class
+br\com\unipar\frameworks\designpatterns_adapter\ImageView.class
+br\com\unipar\frameworks\designpatterns_adapter\VividFilter.class
+br\com\unipar\frameworks\designpatterns_adapter\Filter.class
+br\com\unipar\frameworks\designpatterns_adapter\DesignPatterns_Adapter.class
