@@ -19,7 +19,7 @@ public class ItemDAO implements GenericDAO<Item>{
 
     private SQLiteDatabase bd;
 
-    private String[] colunas = {"CODIGO", "DESCRICAO", "VLRUNIT", "UNMEDIDA"};
+    private String[] colunas = {"CODIGO", "DESCRICAO", "VLUNIT", "UNMEDIDA"};
 
     private String tableName = "ITEM";
 
@@ -48,7 +48,7 @@ public class ItemDAO implements GenericDAO<Item>{
             valores.put("CODIGO", object.getCodigo());
             valores.put("DESCRICAO", object.getDescricao());
             valores.put("UNMEDIDA", object.getUnMedida());
-            valores.put("VLRUNIT", object.getVlrUnit());
+            valores.put("VLUNIT", object.getVlrUnit());
 
             return bd.insert(tableName, null, valores);
         }catch (SQLException ex){
@@ -63,7 +63,7 @@ public class ItemDAO implements GenericDAO<Item>{
             ContentValues valores = new ContentValues();
             valores.put("DESCRICAO", object.getDescricao());;
             valores.put("UNMEDIDA", object.getUnMedida());
-            valores.put("VLRUNIT", object.getVlrUnit());
+            valores.put("VLUNIT", object.getVlrUnit());
 
             String[]identificador = {String.valueOf(object.getCodigo())};
 

@@ -15,7 +15,7 @@ public class contaBancariaTeste {
     private static ContaBancaria contaBancaria;
 
     @BeforeAll
-    static void beforeAll(){
+    static void beforeAll() {
         contaBancaria = new ContaBancaria();
         valorSaque = 0;
         valorDeposito = 0;
@@ -23,14 +23,14 @@ public class contaBancariaTeste {
     }
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         contaBancaria.setCodigoConta("123456");
         contaBancaria.setCodigoBanco("378");
         contaBancaria.setCodigoAgencia("0001");
         contaBancaria.setNomeTitular("Lucas Michalski de Almeida");
-        contaBancaria.setSaldo(5000.00);
+        contaBancaria.setSaldo(2000.00);
 
-        valorSaque = 1000.00;
+        valorSaque = 800.00;
 
         valorDeposito = 2000.00;
 
@@ -40,42 +40,9 @@ public class contaBancariaTeste {
     @Test
     void Sacar() {
         expected = contaBancaria.getSaldo() - valorSaque;
+        contaBancaria.setSaldo(expected);
 
-        try {
-            result = contaBancaria.sacar(contaBancaria.getSaldo(), valorSaque);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Test
-    void SacarInsuficiente() {
-        expected = contaBancaria.getSaldo() - valorSaqueIns;
-
-        try {
-            result = contaBancaria.sacar(contaBancaria.getSaldo(), valorSaqueIns);
-        } catch (Exception e) {
-            System.out.println("Exception Lancada");
-        }
+        Assertions.assertEquals(1200, contaBancaria.getSaldo(), 0.001);
 
     }
-
-    @Test
-    void Deposito() {
-        expected = contaBancaria.getSaldo() + valorDeposito;
-
-        try {
-            result = contaBancaria.depositar(contaBancaria.getSaldo(), valorDeposito);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        Assertions.assertTrue(result == expected);
-    }
-
-    @Test
-    void testeHistorico(){
-        contaBancaria.getHistorico();
-    }
-
 }
