@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.unipar.forcavendas.controller.ItemController;
+import br.com.unipar.forcavendas.model.Endereco;
 import br.com.unipar.forcavendas.model.Item;
 
 public class ItemActivity extends AppCompatActivity {
@@ -19,6 +24,7 @@ public class ItemActivity extends AppCompatActivity {
     private EditText unMedida;
     private Button btSalvar;
     private Button btVoltar;
+    private ListView lvItems;
     private ItemController itemController;
 
     @Override
@@ -32,12 +38,19 @@ public class ItemActivity extends AppCompatActivity {
         unMedida = findViewById(R.id.unMedida);
         btVoltar = findViewById(R.id.btVoltar);
         btSalvar = findViewById(R.id.btSalvar);
+        lvItems = findViewById(R.id.lvItems);
         itemController = new ItemController(this);
-
+        atualizaLista();
         btSalvar.setOnClickListener(v -> salvarItem());
 
         btVoltar.setOnClickListener(v -> voltarActivity());
 
+    }
+    private void atualizaLista() {
+        List<Item> listaItem = itemController.retornarTodos();
+        ArrayAdapter<Item> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaItem);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        lvItems.setAdapter(adapter);
     }
 
     private void salvarItem() {
@@ -73,6 +86,7 @@ public class ItemActivity extends AppCompatActivity {
                 Toast.makeText(this,
                         "Item cadastrado com sucesso!!",
                         Toast.LENGTH_LONG).show();
+                voltarActivity();
             }else {
                 Toast.makeText(this,
                         "Erro ao cadastrar Item, verifique LOG.",

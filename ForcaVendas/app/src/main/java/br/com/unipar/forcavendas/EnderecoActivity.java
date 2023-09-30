@@ -2,13 +2,19 @@ package br.com.unipar.forcavendas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.unipar.forcavendas.controller.EnderecoController;
+import br.com.unipar.forcavendas.model.Cliente;
 import br.com.unipar.forcavendas.model.Endereco;
 
 public class EnderecoActivity extends AppCompatActivity {
@@ -20,7 +26,9 @@ public class EnderecoActivity extends AppCompatActivity {
     private EditText sgEstado;
     private Button btSalvar;
     private Button btVoltar;
+    private ListView lvEnderecos;
     private EnderecoController enderecoController;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +42,21 @@ public class EnderecoActivity extends AppCompatActivity {
         sgEstado     = findViewById(R.id.sgEstado);
         btSalvar = findViewById(R.id.btSalvar);
         btVoltar = findViewById(R.id.btVoltar);
+        lvEnderecos = findViewById(R.id.lvEnderecos);
         enderecoController = new EnderecoController(this);
+
+        atualizaLista();
 
         btSalvar.setOnClickListener(v -> salvarEndereco());
         btVoltar.setOnClickListener(v -> voltarActivity());
 
+    }
+
+    private void atualizaLista() {
+        List<Endereco> listaEndereco = enderecoController.retornarTodos();
+        ArrayAdapter<Endereco> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaEndereco);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        lvEnderecos.setAdapter(adapter);
     }
 
     private void salvarEndereco() {
@@ -87,6 +105,7 @@ public class EnderecoActivity extends AppCompatActivity {
                 Toast.makeText(this,
                         "Endereco cadastrado com sucesso!!",
                         Toast.LENGTH_LONG).show();
+                voltarActivity();
             }else {
                 Toast.makeText(this,
                         "Erro ao cadastrar Endereco, Verifique o LOG.",

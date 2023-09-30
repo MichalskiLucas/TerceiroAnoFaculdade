@@ -10,11 +10,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import br.com.unipar.forcavendas.R;
-import br.com.unipar.forcavendas.model.Item;
+import br.com.unipar.forcavendas.model.Cliente;
+import br.com.unipar.forcavendas.model.Endereco;
 
-public class ItemAdapter extends BaseAdapter {
+public class EnderecoAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<Item> lista;
+    private ArrayList<Endereco> lista;
 
     @Override
     public int getCount() {
@@ -31,7 +32,7 @@ public class ItemAdapter extends BaseAdapter {
         return position;
     }
 
-    public ItemAdapter(Context context, ArrayList<Item> lista) {
+    public EnderecoAdapter(Context context, ArrayList<Endereco> lista) {
         this.context = context;
         this.lista = lista;
     }
@@ -39,12 +40,12 @@ public class ItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_lista_itempedido, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_lista_endereco, parent, false);
         }
 
-        Item item = lista.get(position);
-        TextView nmItem = convertView.findViewById(R.id.nmItem);
-        nmItem.setText(item.getDescricao());
+        Endereco endereco = lista.get(position);
+        TextView nmLogradouro = convertView.findViewById(R.id.nmLogradouro);
+        nmLogradouro.setText(endereco.getLogradouro());
         return convertView;
     }
 }

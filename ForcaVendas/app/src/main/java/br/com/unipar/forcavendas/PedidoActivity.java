@@ -3,6 +3,7 @@ package br.com.unipar.forcavendas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,22 +13,25 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import br.com.unipar.forcavendas.adapter.ItemAdapter;
+import br.com.unipar.forcavendas.adapter.ItemPedidoVendaAdapter;
 import br.com.unipar.forcavendas.adapter.ParcelaAdapter;
 import br.com.unipar.forcavendas.controller.ClienteController;
 import br.com.unipar.forcavendas.controller.EnderecoController;
 import br.com.unipar.forcavendas.controller.ItemController;
+import br.com.unipar.forcavendas.controller.ItemPedidoVendaController;
+import br.com.unipar.forcavendas.controller.PedidoVendaController;
 import br.com.unipar.forcavendas.model.Cliente;
 import br.com.unipar.forcavendas.model.Endereco;
 import br.com.unipar.forcavendas.model.Item;
 import br.com.unipar.forcavendas.model.ItemPedidoVenda;
 import br.com.unipar.forcavendas.model.Parcela;
+import br.com.unipar.forcavendas.model.PedidoVenda;
 
 public class PedidoActivity extends AppCompatActivity {
 
@@ -59,6 +63,8 @@ public class PedidoActivity extends AppCompatActivity {
     private ArrayList<ItemPedidoVenda> listaItemPedido = new ArrayList<>();
     private ArrayList<Parcela> listaParcela = new ArrayList<Parcela>();
     private EnderecoController enderecoController;
+    private PedidoVendaController pedidoVendaController;
+    private ItemPedidoVendaController itemPedidoVendaController;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +96,17 @@ public class PedidoActivity extends AppCompatActivity {
         itemController = new ItemController(this);
         listaClienteString = carregaCliente();
         enderecoController = new EnderecoController(this);
-
+        pedidoVendaController = new PedidoVendaController(this);
+        itemPedidoVendaController = new ItemPedidoVendaController(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, listaClienteString);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerItens.setAdapter(adapter);
         retornaPedido();
         atualizaListaItem(listaItemPedido);
 
+        btVoltar.setOnClickListener(v -> retornarPagina());
+        btSalvar.setOnClickListener(v -> salvarPedido());
+        
         cdEndereco.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -152,6 +162,111 @@ public class PedidoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void salvarPedido() {
+        PedidoVenda pedidoVenda = new PedidoVenda();
+        String[] parts = spinnerItens.getSelectedItem().toString().split("-");
+        int codCliente = Integer.parseInt(parts[0].trim());
+        String tpPagamento = "";
+        if (rbAvista.isChecked()){
+            tpPagamento = "A";
+        } else if (rbAprazo.isChecked()) {
+            if(qtParcelas.getText().toString().equals("")){
+                qtParcelas.setError("É necessário informar pelos uma parcela");
+            }else{
+                tpPagamento = "P";
+            }
+
+        }
+        String validacao = pedidoVendaController.validaPedido(codCliente,  tpPagamento);
+
+        if (!validacao.equals("")){
+            if (validacao.contains("cliente")){
+                Toast.makeText(this,
+                        "Erro ao cadastrar Pedido, Cliente deve ser informado.",
+                        Toast.LENGTH_LONG).show();
+            }
+            if (validacao.contains("pagamento")){
+                Toast.makeText(this,
+                        "Erro ao cadastrar Pedido, Tipo de pagamento deve ser informado.",
+                        Toast.LENGTH_LONG).show();
+            }
+        }else{
+            if(listaItemPedido.stream().count() > 0){
+                parts = spinnerItens.getSelectedItem().toString().split("-");
+                codCliente = Integer.parseInt(parts[0].trim());
+                pedidoVenda.setCodCliente(codCliente);
+                pedidoVenda.setValorTotal(Double.parseDouble(totPedido.getText().toString()));
+                pedidoVenda.setCodigo(Integer.parseInt(codPedido.getText().toString()));
+
+                if (rbAvista.isChecked()){
+                    pedidoVenda.setTpPagamento("A");
+                } else if (rbAprazo.isChecked()) {
+                    if(qtParcelas.getText().toString().equals("")){
+                        qtParcelas.setError("É necessário informar pelos uma parcela");
+                    }else{
+                        pedidoVenda.setTpPagamento("P");
+                    }
+
+                }
+
+                if (rbEntrega.isChecked()){
+                    if (cdEndereco.getText().toString().equals("")){
+                        cdEndereco.setError("É necessário informar o endereco");
+                    }else{
+                        pedidoVenda.setCodEnderecoEntrega(Integer.parseInt(cdEndereco.getText().toString()));
+                    }
+                }
+
+
+                if (pedidoVendaController.salvarPedido(pedidoVenda) > 0){
+
+                    for(int i = 0; i < listaItemPedido.size(); i++){
+                        ItemPedidoVenda itemPedidoVenda = new ItemPedidoVenda();
+                        itemPedidoVenda.setCodigoPedido(listaItemPedido.get(i).getCodigoPedido());
+                        itemPedidoVenda.setQtItem(listaItemPedido.get(i).getQtItem());
+                        itemPedidoVenda.setCodigo(listaItemPedido.get(i).getCodigo());
+                        itemPedidoVenda.setDescItem(listaItemPedido.get(i).getDescItem());
+                        itemPedidoVenda.setCodigoItem(listaItemPedido.get(i).getCodigoItem());
+                        itemPedidoVenda.setVlUnitItem(listaItemPedido.get(i).getVlUnitItem());
+
+                        if (itemPedidoVendaController.salvarItemPedido(itemPedidoVenda) > 0){
+                            continue;
+                        }else{
+                            Toast.makeText(this,
+                                    "Erro ao cadastrar item do pedido, Verifique o LOG.",
+                                    Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                    }
+
+                    Toast.makeText(this,
+                            "Pedido cadastrado com sucesso!!",
+                            Toast.LENGTH_LONG).show();
+                    retornarPagina();
+                }else {
+                    Toast.makeText(this,
+                            "Erro ao cadastrar Pedido, Verifique o LOG.",
+                            Toast.LENGTH_LONG).show();
+                }
+
+
+            }else{
+                Toast.makeText(this,
+                        "Não foi selecionado nenhum item",
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+    private void retornarPagina() {
+        Intent intent = new Intent(this,
+                MainActivity.class);
+
+        startActivity(intent);
     }
 
     private void validaEndereco(Endereco endereco) {
@@ -236,7 +351,7 @@ public class PedidoActivity extends AppCompatActivity {
     }
 
     private void atualizaListaItem(ArrayList<ItemPedidoVenda> listaItemPedido) {
-        ItemAdapter adapter = new ItemAdapter(this, listaItemPedido);
+        ItemPedidoVendaAdapter adapter = new ItemPedidoVendaAdapter(this, listaItemPedido);
         if (listaItemPedido.size() > 0){
             lvItens.setVisibility(View.VISIBLE);
             lvItens.setAdapter(adapter);

@@ -35,4 +35,15 @@ public class PedidoVendaController {
     public Item retornaPedido(int id){
         return ItemDAO.getInstancia(context).getById(id);
     }
+
+    public String validaPedido(int codCliente, String tpPagamento) {
+        String mensagem = "";
+        if (String.valueOf(codCliente).equals("")){
+            mensagem += "O cliente deve ser informado\n";
+        }
+        if (tpPagamento.equals("")){
+            mensagem += "Tipo de pagamento deve ser informado \n";
+        }
+        return mensagem;
+    }
 }

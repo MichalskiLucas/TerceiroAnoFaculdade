@@ -1,5 +1,7 @@
 package br.com.unipar.forcavendas.model;
 
+import androidx.annotation.NonNull;
+
 public class Item {
 
     private int codigo;
@@ -47,5 +49,10 @@ public class Item {
     }
 
     public Item() {
+    }
+
+    @Override
+    public String toString() {
+        return descricao;
     }
 }

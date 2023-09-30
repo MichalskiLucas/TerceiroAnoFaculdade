@@ -10,11 +10,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import br.com.unipar.forcavendas.R;
-import br.com.unipar.forcavendas.model.Item;
+import br.com.unipar.forcavendas.model.ItemPedidoVenda;
 
-public class ItemAdapter extends BaseAdapter {
+public class ItemPedidoVendaAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<Item> lista;
+    private ArrayList<ItemPedidoVenda> lista;
+
+    public ItemPedidoVendaAdapter(Context context, ArrayList<ItemPedidoVenda> lista) {
+        this.context = context;
+        this.lista = lista;
+    }
+
 
     @Override
     public int getCount() {
@@ -31,20 +37,17 @@ public class ItemAdapter extends BaseAdapter {
         return position;
     }
 
-    public ItemAdapter(Context context, ArrayList<Item> lista) {
-        this.context = context;
-        this.lista = lista;
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.activity_lista_itempedido, parent, false);
         }
 
-        Item item = lista.get(position);
+        ItemPedidoVenda itemPedidoVenda = lista.get(position);
         TextView nmItem = convertView.findViewById(R.id.nmItem);
-        nmItem.setText(item.getDescricao());
+        TextView qtItem = convertView.findViewById(R.id.qtItem);
+        nmItem.setText(itemPedidoVenda.getDescItem());
+        qtItem.setText(String.valueOf(itemPedidoVenda.getQtItem()));
         return convertView;
     }
 }

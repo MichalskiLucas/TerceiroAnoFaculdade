@@ -45,11 +45,11 @@ public class PedidoVendaDAO implements GenericDAO<PedidoVenda> {
         try{
             ContentValues valores = new ContentValues();
             valores.put("CODIGO", object.getCodigo());
+            valores.put("CODIGOCLIENTE", object.getCodCliente());
             valores.put("VALORTOTAL", object.getValorTotal());
             valores.put("TPAGAMENTO", object.getTpPagamento());
             valores.put("NRPARCELAS", object.getNrParcelas());
             valores.put("CODENDERECOENTREGA", object.getCodEnderecoEntrega());
-            valores.put("CODIGOCLIENTE", object.getCodCliente());
 
             return bd.insert(tableName, null, valores);
         }catch (SQLException ex){
@@ -62,11 +62,11 @@ public class PedidoVendaDAO implements GenericDAO<PedidoVenda> {
     public long update(PedidoVenda object) {
         try {
             ContentValues valores = new ContentValues();
+            valores.put("CODIGOCLIENTE", object.getCodCliente());
             valores.put("VALORTOTAL", object.getValorTotal());;
             valores.put("TPAGAMENTO", object.getTpPagamento());
             valores.put("NRPARCELAS", object.getNrParcelas());
             valores.put("CODENDERECOENTREGA", object.getCodEnderecoEntrega());
-            valores.put("CODIGOCLIENTE", object.getCodCliente());
 
             String[]identificador = {String.valueOf(object.getCodigo())};
 

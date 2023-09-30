@@ -68,4 +68,8 @@ public class Endereco {
 
     public Endereco() {
     }
+    @Override
+    public String toString() {
+        return logradouro;
+    }
 }
