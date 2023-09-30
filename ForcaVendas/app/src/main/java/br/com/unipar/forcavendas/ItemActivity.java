@@ -19,6 +19,7 @@ public class ItemActivity extends AppCompatActivity {
     private EditText unMedida;
     private Button btSalvar;
     private Button btVoltar;
+    private ItemController itemController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class ItemActivity extends AppCompatActivity {
         unMedida = findViewById(R.id.unMedida);
         btVoltar = findViewById(R.id.btVoltar);
         btSalvar = findViewById(R.id.btSalvar);
+        itemController = new ItemController(this);
 
         btSalvar.setOnClickListener(v -> salvarItem());
 
@@ -40,7 +42,6 @@ public class ItemActivity extends AppCompatActivity {
 
     private void salvarItem() {
         Item item = new Item();
-        ItemController itemController = new ItemController(this);
 
         String validacao = itemController.validaItems(cdItem.getText().toString(),
                 dsItem.getText().toString(), vlUnit.getText().toString(),

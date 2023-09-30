@@ -25,11 +25,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cadastrar Cliente"
+        android:id="@+id/btCliente"
         android:layout_margin="30dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cadastrar Endereco"
+        android:id="@+id/btEndereco"
+        android:layout_margin="30dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Realizar Pedido"
+        android:id="@+id/btPedido"
         android:layout_margin="30dp"/>
 
 

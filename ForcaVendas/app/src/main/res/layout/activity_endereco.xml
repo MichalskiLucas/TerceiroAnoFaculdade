@@ -71,19 +71,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/sgEstado"/>
 
-
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Salvar"
+        android:id="@+id/btSalvar"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:id="@+id/btVoltar"
         android:text="Voltar"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"/>

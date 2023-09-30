@@ -19,7 +19,7 @@ public class PedidoVendaDAO implements GenericDAO<PedidoVenda> {
 
     private SQLiteDatabase bd;
 
-    private String[] colunas = {"CODIGO", "VALORTOTAL", "TPAGAMENTO", "NRPARCELAS", "CODENDERECOENTREGA"};
+    private String[] colunas = {"CODIGO", "CODIGOCLIENTE", "VALORTOTAL", "TPAGAMENTO", "NRPARCELAS", "CODENDERECOENTREGA"};
 
     private String tableName = "PEDIDOVENDA";
 
@@ -49,6 +49,7 @@ public class PedidoVendaDAO implements GenericDAO<PedidoVenda> {
             valores.put("TPAGAMENTO", object.getTpPagamento());
             valores.put("NRPARCELAS", object.getNrParcelas());
             valores.put("CODENDERECOENTREGA", object.getCodEnderecoEntrega());
+            valores.put("CODIGOCLIENTE", object.getCodCliente());
 
             return bd.insert(tableName, null, valores);
         }catch (SQLException ex){
@@ -65,6 +66,7 @@ public class PedidoVendaDAO implements GenericDAO<PedidoVenda> {
             valores.put("TPAGAMENTO", object.getTpPagamento());
             valores.put("NRPARCELAS", object.getNrParcelas());
             valores.put("CODENDERECOENTREGA", object.getCodEnderecoEntrega());
+            valores.put("CODIGOCLIENTE", object.getCodCliente());
 
             String[]identificador = {String.valueOf(object.getCodigo())};
 
@@ -99,10 +101,11 @@ public class PedidoVendaDAO implements GenericDAO<PedidoVenda> {
                 do{
                     PedidoVenda pedidoVenda = new PedidoVenda();
                     pedidoVenda.setCodigo(cursor.getInt(0));
-                    pedidoVenda.setValorTotal(cursor.getDouble(1));
-                    pedidoVenda.setTpPagamento(cursor.getString(2));
-                    pedidoVenda.setNrParcelas(cursor.getInt(3));
-                    pedidoVenda.setCodEnderecoEntrega(cursor.getInt(4));
+                    pedidoVenda.setCodCliente(cursor.getInt(1));
+                    pedidoVenda.setValorTotal(cursor.getDouble(2));
+                    pedidoVenda.setTpPagamento(cursor.getString(3));
+                    pedidoVenda.setNrParcelas(cursor.getInt(4));
+                    pedidoVenda.setCodEnderecoEntrega(cursor.getInt(5));
                     lista.add(pedidoVenda);
                 }while (cursor.moveToNext());
             }
@@ -121,10 +124,11 @@ public class PedidoVendaDAO implements GenericDAO<PedidoVenda> {
             if (cursor.moveToFirst()){
                 PedidoVenda pedidoVenda = new PedidoVenda();
                 pedidoVenda.setCodigo(cursor.getInt(0));
-                pedidoVenda.setValorTotal(cursor.getDouble(1));
-                pedidoVenda.setTpPagamento(cursor.getString(2));
-                pedidoVenda.setNrParcelas(cursor.getInt(3));
-                pedidoVenda.setCodEnderecoEntrega(cursor.getInt(4));
+                pedidoVenda.setCodCliente(cursor.getInt(1));
+                pedidoVenda.setValorTotal(cursor.getDouble(2));
+                pedidoVenda.setTpPagamento(cursor.getString(3));
+                pedidoVenda.setNrParcelas(cursor.getInt(4));
+                pedidoVenda.setCodEnderecoEntrega(cursor.getInt(5));
 
                 return pedidoVenda;
             }

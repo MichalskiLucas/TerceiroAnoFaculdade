@@ -6,6 +6,16 @@ public class PedidoVenda {
     String tpPagamento;
     int nrParcelas;
 
+    int codCliente;
+
+    public int getCodCliente() {
+        return codCliente;
+    }
+
+    public void setCodCliente(int codCliente) {
+        this.codCliente = codCliente;
+    }
+
     int codEnderecoEntrega;
 
     public int getCodEnderecoEntrega() {
@@ -51,11 +61,12 @@ public class PedidoVenda {
     public PedidoVenda() {
     }
 
-    public PedidoVenda(int codigo, Double valorTotal, String tpPagamento, int nrParcelas, int codEnderecoEntrega) {
+    public PedidoVenda(int codigo, Double valorTotal, String tpPagamento, int nrParcelas, int codCliente, int codEnderecoEntrega) {
         this.codigo = codigo;
         this.valorTotal = valorTotal;
         this.tpPagamento = tpPagamento;
         this.nrParcelas = nrParcelas;
+        this.codCliente = codCliente;
         this.codEnderecoEntrega = codEnderecoEntrega;
     }
 }
