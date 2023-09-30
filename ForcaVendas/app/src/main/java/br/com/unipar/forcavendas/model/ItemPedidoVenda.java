@@ -4,6 +4,16 @@ public class ItemPedidoVenda {
     int codigo;
     int codigoPedido;
     int codigoItem;
+    String descItem;
+
+    public String getDescItem() {
+        return descItem;
+    }
+
+    public void setDescItem(String descItem) {
+        this.descItem = descItem;
+    }
+
     int qtItem;
     Double vlUnitItem;
 
@@ -50,10 +60,11 @@ public class ItemPedidoVenda {
     public ItemPedidoVenda() {
     }
 
-    public ItemPedidoVenda(int codigo, int codigoPedido, int codigoItem, int qtItem, Double vlUnitItem) {
+    public ItemPedidoVenda(int codigo, int codigoPedido, int codigoItem, String descItem, int qtItem, Double vlUnitItem) {
         this.codigo = codigo;
         this.codigoPedido = codigoPedido;
         this.codigoItem = codigoItem;
+        this.descItem = descItem;
         this.qtItem = qtItem;
         this.vlUnitItem = vlUnitItem;
     }

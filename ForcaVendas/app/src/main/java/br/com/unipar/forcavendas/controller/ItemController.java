@@ -71,5 +71,9 @@ public class ItemController {
         return ItemDAO.getInstancia(context).getById(id);
     }
 
+    public static Item getItemById(int id, Context context){
+        return ItemDAO.getInstancia(context).getById(id);
+    }
+
 
 }

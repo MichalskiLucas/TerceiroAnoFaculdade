@@ -58,4 +58,9 @@ public class Cliente {
 
     public Cliente() {
     }
+
+    @Override
+    public String toString() {
+        return codigo+" - "+nome;
+    }
 }

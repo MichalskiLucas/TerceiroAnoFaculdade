@@ -19,7 +19,7 @@ public class ItemPedidoVendaDAO implements GenericDAO<ItemPedidoVenda> {
 
     private SQLiteDatabase bd;
 
-    private String[] colunas = {"CODIGO", "CODIGOPEDIDO", "CODIGOITEM", "QTITEM", "VlUNITITEM"};
+    private String[] colunas = {"CODIGO", "CODIGOPEDIDO", "CODIGOITEM", "QTITEM", "VlUNITITEM", "DESCITEM"};
 
     private String tableName = "ITEMPEDIDOVENDA";
 
@@ -49,6 +49,7 @@ public class ItemPedidoVendaDAO implements GenericDAO<ItemPedidoVenda> {
             valores.put("CODIGOITEM", object.getCodigoItem());
             valores.put("QTITEM", object.getQtItem());
             valores.put("VlUNITITEM", object.getVlUnitItem());
+            valores.put("DESCITEM", object.getDescItem());
 
             return bd.insert(tableName, null, valores);
         }catch (SQLException ex){
@@ -65,6 +66,7 @@ public class ItemPedidoVendaDAO implements GenericDAO<ItemPedidoVenda> {
             valores.put("CODIGOITEM", object.getCodigoItem());
             valores.put("QTITEM", object.getQtItem());
             valores.put("VLUNITITEM", object.getVlUnitItem());
+            valores.put("DESCITEM", object.getDescItem());
 
             String[]identificador = {String.valueOf(object.getCodigo())};
 
@@ -103,6 +105,7 @@ public class ItemPedidoVendaDAO implements GenericDAO<ItemPedidoVenda> {
                     itemPedidoVenda.setCodigoItem(cursor.getInt(2));
                     itemPedidoVenda.setQtItem(cursor.getInt(3));
                     itemPedidoVenda.setVlUnitItem(cursor.getDouble(4));
+                    itemPedidoVenda.setDescItem(cursor.getString(5));
                     lista.add(itemPedidoVenda);
                 }while (cursor.moveToNext());
             }
@@ -125,6 +128,7 @@ public class ItemPedidoVendaDAO implements GenericDAO<ItemPedidoVenda> {
                 itemPedidoVenda.setCodigoItem(cursor.getInt(2));
                 itemPedidoVenda.setQtItem(cursor.getInt(3));
                 itemPedidoVenda.setVlUnitItem(cursor.getDouble(4));
+                itemPedidoVenda.setDescItem(cursor.getString(5));
 
                 return itemPedidoVenda;
             }
