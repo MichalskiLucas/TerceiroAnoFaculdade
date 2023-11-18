@@ -13,4 +13,21 @@ public class UsuarioService {
     public Usuario login(String email, String senha){
         return usuarioRepository.findByEmailAndSenha(email, senha);
     }
+
+    public Usuario cadastrar(Usuario usuario) throws Exception{
+        if(usuario.getEmail() == null){
+            throw new Exception("É necessário informar o email");
+        }
+
+        if(usuario.getSenha() == null){
+            throw new Exception("É necessário informar a senha");
+        }
+
+        if(usuario.getNome() == null){
+            throw new Exception("É necessário informar o nome");
+        }
+
+        return usuarioRepository.saveAndFlush(usuario);
+    }
+
 }

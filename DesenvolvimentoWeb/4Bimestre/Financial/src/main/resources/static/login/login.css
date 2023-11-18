@@ -1,0 +1,53 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.row {
+    padding: 20px;
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.form-control {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn-login,
+.btn-cadastro {
+    width: 400px;
+    margin-top: 10px;
+}
+
+.btn-login {
+    background-color: rebeccapurple;
+    color: white;
+    border-color: rebeccapurple;
+}
+
+.btn-login:hover {
+    opacity: 0.8;
+}
+
+.btn-cadastro {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}
