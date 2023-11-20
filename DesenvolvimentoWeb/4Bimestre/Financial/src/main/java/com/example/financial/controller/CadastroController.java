@@ -9,22 +9,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(path = "/cadastro")
+@RequestMapping("/cadastro")
 public class CadastroController {
+
     @Autowired
     UsuarioService usuarioService;
+
     @GetMapping
-    public String cadastro(){
+    public String cadastro() {
         return "cadastro/index";
     }
 
-    @PostMapping
-    public String cadastrar(Usuario usuario) throws Exception{
-        try{
+    @PostMapping("/cadastrar")
+    public String cadastrar(Usuario usuario) {
+        try {
             usuarioService.cadastrar(usuario);
-            return "login/login";
-        }catch (Exception e){
-            return "";
+            //return "redirect:/login";
+            return null;
+        } catch (Exception e) {
+            return "error";
         }
     }
 }

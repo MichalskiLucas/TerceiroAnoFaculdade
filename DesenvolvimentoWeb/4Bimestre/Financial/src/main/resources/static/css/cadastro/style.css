@@ -25,19 +25,20 @@ body {
     margin-bottom: 10px;
 }
 
-.btn-login,
+.btn-voltar,
 .btn-cadastro {
-    width: 400px;
+    width: 300px;
     margin-top: 10px;
 }
 
-.btn-login {
+.btn-voltar {
     background-color: rebeccapurple;
     color: white;
     border-color: rebeccapurple;
+    margin-right: 10px; /* Adiciona um espaçamento de 10px à direita */
 }
 
-.btn-login:hover {
+.btn-voltar:hover {
     opacity: 0.8;
 }
 
