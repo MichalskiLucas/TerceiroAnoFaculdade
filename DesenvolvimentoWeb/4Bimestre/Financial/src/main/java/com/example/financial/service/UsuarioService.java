@@ -5,6 +5,9 @@ import com.example.financial.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UsuarioService {
     @Autowired
@@ -14,20 +17,17 @@ public class UsuarioService {
         return usuarioRepository.findByEmailAndSenha(email, senha);
     }
 
-    public Usuario cadastrar(Usuario usuario) throws Exception{
-        if(usuario.getEmail() == null){
-            throw new Exception("É necessário informar o email");
-        }
-
-        if(usuario.getSenha() == null){
-            throw new Exception("É necessário informar a senha");
-        }
-
-        if(usuario.getNome() == null){
-            throw new Exception("É necessário informar o nome");
-        }
-
+    public Usuario cadastrar(Usuario usuario){
         return usuarioRepository.saveAndFlush(usuario);
+    }
+
+    public List<String> validate(Usuario usuario){
+        List<String> msg = new ArrayList<>();
+        if(!usuario.getEmail().contains("@")){
+            msg.add("É necessário informar um e-mail válido");
+        }
+
+        return msg;
     }
 
 }

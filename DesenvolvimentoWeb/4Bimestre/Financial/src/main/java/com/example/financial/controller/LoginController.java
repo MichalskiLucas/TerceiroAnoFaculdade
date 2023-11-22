@@ -23,7 +23,7 @@ public class LoginController {
         usuario = usuarioService.login(usuario.getEmail(), usuario.getSenha());
 
         if (usuario.getId() != null){
-            return "home/homePage";
+            return "redirect: home/homePage";
         } else {
             return "login/index";
         }

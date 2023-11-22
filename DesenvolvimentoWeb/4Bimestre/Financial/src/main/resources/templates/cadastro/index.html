@@ -15,8 +15,15 @@
 </head>
 <body>
 <div class="container">
+  <div class="row" th:if="${not #lists.isEmpty(msg)}">
+  <div th:each = "m : ${msg}">
+    <div class="alert alert-warning" role="alert" th:text = "${m}">
+      A simple warning alert—check it out!
+    </div>
+  </div>
+</div>
   <div class="row">
-    <form action="/cadastro/cadastrar" method="post">
+    <form  class="card-body" method="POST" action="/cadastro" th:object="${usuario}">
       <div class="mb-3">
         <label class="form-label">Nome</label>
         <input class="form-control" type="text" name="nome">
@@ -30,8 +37,10 @@
         <input class="form-control" type="password" name="senha">
       </div>
       <div class="buttons-container">
-        <button class="btn btn-secondary btn-voltar" type="button" th:onclick="voltar()">Voltar</button>
-        <button class="btn btn-secondary btn-cadastro" type="submit" th:onsubmit="validaCadastro()">Cadastrar</button>
+        <form action="/login" method="GET">
+          <button class="btn btn-secondary btn-voltar" type="button" th:onclick="voltar()">Voltar</button>
+        </form>
+        <button class="btn btn-secondary btn-cadastro" type="submit">Cadastrar</button>
       </div>
     </form>
   </div>
