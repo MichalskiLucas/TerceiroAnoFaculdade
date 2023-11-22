@@ -30,24 +30,12 @@ public class CadastroController {
         return "cadastro/index";
     }
 
-    @PostMapping("/cadastrar1")
-    public String cadastrar(Usuario usuario) {
-        try {
-            usuarioService.cadastrar(usuario);
-            //return "redirect:/login";
-            return null;
-        } catch (Exception e) {
-            return "error";
-        }
-    }
-
     @PostMapping
-    public String salvarDisciplina(@Valid Usuario usuario,
-                                   BindingResult bindingResult,
-                                   RedirectAttributes redirectAttributes){
+    public String cadastroUsuario(@Valid Usuario usuario,
+                                  BindingResult bindingResult,
+                                  RedirectAttributes redirectAttributes){
 
-        List<String> msg = new ArrayList<>();
-        msg.addAll(usuarioService.validate(usuario));
+        List<String> msg = new ArrayList<>(usuarioService.validate(usuario));
 
         if (bindingResult.hasErrors() || !msg.isEmpty()) {
             redirectAttributes.addFlashAttribute("usuario", usuario);

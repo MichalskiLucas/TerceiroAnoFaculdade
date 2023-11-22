@@ -19,9 +19,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @NotEmpty
-    @Size(min = 5, max = 60)
+
     private String nome;
     @NotNull
     @NotEmpty

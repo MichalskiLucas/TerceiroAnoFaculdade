@@ -23,6 +23,11 @@ public class UsuarioService {
 
     public List<String> validate(Usuario usuario){
         List<String> msg = new ArrayList<>();
+
+        if(usuario.getNome() == null || usuario.getNome().isEmpty()) {
+            msg.add("É necessário informar um nome");
+        }
+
         if(!usuario.getEmail().contains("@")){
             msg.add("É necessário informar um e-mail válido");
         }
