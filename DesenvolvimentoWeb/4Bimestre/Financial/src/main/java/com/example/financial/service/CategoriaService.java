@@ -18,4 +18,17 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
+    public Categoria insert(Categoria categoria){
+        return categoriaRepository.saveAndFlush(categoria);
+    }
+
+    public void delete(Long id){
+        categoriaRepository.deleteById(id);
+    }
+
+    public Categoria findById(Long id){
+        return categoriaRepository.findById(id).get();
+    }
+
+
 }
