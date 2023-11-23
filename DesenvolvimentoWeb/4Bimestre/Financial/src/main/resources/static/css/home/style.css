@@ -1,0 +1,17 @@
+.purple-background {
+    background-color: rebeccapurple !important;
+    opacity: 0.8;
+}
+
+.navbar-brand, .navbar-nav .nav-link, .btn {
+    color: white !important;
+}
+
+.card {
+    transition: background-color 0.3s ease;
+}
+.center-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
