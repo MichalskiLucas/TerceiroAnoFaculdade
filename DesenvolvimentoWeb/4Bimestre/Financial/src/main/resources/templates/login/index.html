@@ -11,19 +11,26 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous" defer></script>
     <link th:href="@{/css/login/login.css}" rel="stylesheet">
+    <link rel="shortcut icon" th:href="@{/images/world-financial.png}" type="image/x-icon" />
     <script type="text/javascript" th:src="@{js/login/actions.js}"></script>
 </head>
 <body>
 <div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: 30vh;">
+        <div class="col-md-4 text-center mb-4">
+            <img th:src="@{/images/world-financial.png}" alt="World Financial Icon" style="width: 200px; height: 200px;">
+        </div>
+    </div>
+
     <div class="row" th:if="${not #lists.isEmpty(msg)}">
-        <div th:each = "m : ${msg}">
-            <div class="alert alert-warning" role="alert" th:text = "${m}">
+        <div th:each="m : ${msg}">
+            <div class="alert alert-warning" role="alert" th:text="${m}">
                 A simple warning alert—check it out!
             </div>
         </div>
     </div>
     <div class="row">
-        <form  class="card-body" method="POST" action="/login" th:object="${usuario}">
+        <form class="card-body" method="POST" action="/login" th:object="${usuario}">
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input class="form-control" type="text" name="email">
