@@ -19,11 +19,13 @@ public class Registro {
     private Long id;
     private LocalDate dataRegistro;
     private String descricao;
-    private double valor;
+    private Double valor;
     @ManyToOne
     private Usuario usuario;
     @ManyToOne
     private Categoria categoria;
+
+    @Enumerated(EnumType.STRING)
     private TipoRegistroENUM tipoRegistroENUM;
 
     public Long getId() {
