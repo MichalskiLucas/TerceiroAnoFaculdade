@@ -1,7 +1,7 @@
 package com.example.financial.repository;
 
 import com.example.financial.enums.TipoRegistroENUM;
-import com.example.financial.model.Registro;
+import com.example.financial.domain.Registro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

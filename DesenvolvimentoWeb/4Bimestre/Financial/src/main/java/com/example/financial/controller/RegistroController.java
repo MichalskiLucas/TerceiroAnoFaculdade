@@ -1,7 +1,7 @@
 package com.example.financial.controller;
 
-import com.example.financial.model.Categoria;
-import com.example.financial.model.Registro;
+import com.example.financial.domain.Registro;
+import com.example.financial.service.CategoriaService;
 import com.example.financial.service.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,16 +26,18 @@ public class RegistroController {
     @Autowired
     private RegistroService registroService;
 
+    @Autowired
+    private CategoriaService categoriaService;
     @GetMapping(path = "/criar")
     public ModelAndView retornaRegistro(ModelMap model){
-        ModelAndView modelAndView = new ModelAndView("lancamento/inserir");
-
+        ModelAndView modelAndView = new ModelAndView("registro/inserir");
+        modelAndView.addObject("categorias", categoriaService.findAll());
         if (model.containsAttribute("registro")) {
             modelAndView.addObject("registro", model.getAttribute("registro"));
             modelAndView.addObject("msg", model.getAttribute("msg"));
 
         } else {
-            modelAndView.addObject("registro", new Categoria());
+            modelAndView.addObject("registro", new Registro());
             modelAndView.addObject("msg", new ArrayList<String>());
         }
 
@@ -64,7 +66,6 @@ public class RegistroController {
         }
 
         registroService.insert(registro);
-
         return "redirect:/registro/criar";
     }
 }

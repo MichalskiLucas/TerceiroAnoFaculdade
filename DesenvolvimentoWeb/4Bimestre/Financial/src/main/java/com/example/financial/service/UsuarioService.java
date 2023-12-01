@@ -1,6 +1,6 @@
 package com.example.financial.service;
 
-import com.example.financial.model.Usuario;
+import com.example.financial.domain.Usuario;
 import com.example.financial.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

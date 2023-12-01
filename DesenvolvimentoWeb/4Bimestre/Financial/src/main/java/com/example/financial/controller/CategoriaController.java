@@ -1,6 +1,6 @@
 package com.example.financial.controller;
 
-import com.example.financial.model.Categoria;
+import com.example.financial.domain.Categoria;
 import com.example.financial.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

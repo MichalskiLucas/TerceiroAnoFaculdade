@@ -1,6 +1,6 @@
 package com.example.financial.controller;
 
-import com.example.financial.model.Usuario;
+import com.example.financial.domain.Usuario;
 import com.example.financial.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

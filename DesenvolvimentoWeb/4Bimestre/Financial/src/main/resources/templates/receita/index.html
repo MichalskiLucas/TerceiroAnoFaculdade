@@ -21,7 +21,7 @@
                         <a class="nav-link active" aria-current="page" href="/categoria">Categorias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/lancamento">Lançamentos</a>
+                        <a class="nav-link active" aria-current="page" href="/receita">Lançamentos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/receita">Receitas</a>
@@ -29,7 +29,7 @@
                 </ul>
             </div>
             <div class="d-flex">
-                <form action="/registro/criar" method="GET">
+                <form action="/receita/criar" method="GET">
                     <button type="submit" class="btn btn-success mb-3">Cadastrar</button>
                 </form>
             </div>
@@ -43,24 +43,24 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Descrição do lançamento</th>
+                    <th scope="col">Descrição das receitas</th>
                     <th scope="col"> Valor</th>
                     <th scope="col"> Categoria</th>
                     <th scope="col"> Data</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="lancamento : ${lancamentos}">
-                    <th th:text="${lancamento.id}" scope="row">1</th>
-                    <td th:text="${lancamento.descricao}">Mark</td>
-                    <td th:text="${lancamento.valor}">Mark</td>
-                    <td th:text="${lancamento.categoria.descricao}">Mark</td>
-                    <td th:text="${lancamento.dataRegistro}">Mark</td>
+                <tr th:each="receita : ${receitas}">
+                    <th th:text="${receita.id}" scope="row">1</th>
+                    <td th:text="${receita.descricao}">Mark</td>
+                    <td th:text="${receita.valor}">Mark</td>
+                    <td th:text="${receita.categoria.descricao}">Mark</td>
+                    <td th:text="${receita.dataRegistro}">Mark</td>
                     <td>
-                        <a  class="btn btn-primary" th:href="@{'lancamento/editar/'+${lancamento.id}}" >Editar</a>
+                        <a  class="btn btn-primary" th:href="@{'receita/editar/'+${receita.id}}" >Editar</a>
                     </td>
                     <td>
-                        <a  class="btn btn-danger" th:href="@{'lancamento/remover/'+${lancamento.id}}" >Deletar</a>
+                        <a  class="btn btn-danger" th:href="@{'receita/remover/'+${receita.id}}" >Deletar</a>
                     </td>
                 </tr>
                 </tbody>

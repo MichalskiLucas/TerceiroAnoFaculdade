@@ -1,4 +1,4 @@
-package com.example.financial.model;
+package com.example.financial.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

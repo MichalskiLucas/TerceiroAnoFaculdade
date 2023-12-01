@@ -22,8 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "/lancamento")
-public class LancamentoController {
+@RequestMapping(path = "/receita")
+public class ReceitaController {
+
 
     @Autowired
     private RegistroService registroService;
@@ -33,18 +34,18 @@ public class LancamentoController {
 
     @GetMapping
     public ModelAndView registro(ModelMap model) {
-        ModelAndView modelAndView = new ModelAndView("lancamento/index");
-        if (model.containsAttribute("lancamentos"))
-            modelAndView.addObject("lancamentos", model.getAttribute("lancamentos"));
+        ModelAndView modelAndView = new ModelAndView("receita/index");
+        if (model.containsAttribute("receitas"))
+            modelAndView.addObject("receitas", model.getAttribute("receitas"));
         else{
-            modelAndView.addObject("lancamentos", registroService.findLancamento());
+            modelAndView.addObject("receitas", registroService.findReceita());
         }
         return modelAndView;
     }
 
     @GetMapping(path = "/criar")
-    public ModelAndView retornaLancamento(ModelMap model){
-        ModelAndView modelAndView = new ModelAndView("lancamento/inserir");
+    public ModelAndView retornaReceita(ModelMap model){
+        ModelAndView modelAndView = new ModelAndView("receita/inserir");
         modelAndView.addObject("categorias", categoriaService.findAll());
         if (model.containsAttribute("registro")) {
             modelAndView.addObject("registro", model.getAttribute("registro"));
@@ -59,22 +60,22 @@ public class LancamentoController {
     }
 
     @GetMapping(path = "/remover/{id}")
-    public String removerLancamento(@PathVariable("id") Long id){
+    public String removerReceita(@PathVariable("id") Long id){
         registroService.delete(id);
-        return "redirect:/lancamento";
+        return "redirect:/receita";
     }
     @GetMapping(path = "/editar/{id}")
-    public ModelAndView editarLancamento(@PathVariable("id") Long id){
-        ModelAndView modelAndView = new ModelAndView("lancamento/inserir");
+    public ModelAndView editarReceita(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView("registro/inserir");
         modelAndView.addObject("categorias", categoriaService.findAll());
-        modelAndView.addObject("registro", registroService.findById(id));
+        modelAndView.addObject("receita", registroService.findById(id));
         return modelAndView;
     }
 
     @PostMapping
-    public String salvarLancamento(@Valid Registro registro,
-                                 BindingResult bindingResult,
-                                 RedirectAttributes redirectAttributes){
+    public String salvarReceita(@Valid Registro registro,
+                                   BindingResult bindingResult,
+                                   RedirectAttributes redirectAttributes){
 
         List<String> msg = new ArrayList<>();
 
@@ -89,12 +90,11 @@ public class LancamentoController {
 
             redirectAttributes.addFlashAttribute("msg", msg);
 
-            return "redirect:/lancamento/criar";
+            return "redirect:/registro/criar";
         }
-        registro.setTipoRegistroENUM(TipoRegistroENUM.DESPESA);
+        registro.setTipoRegistroENUM(TipoRegistroENUM.RECEITA);
         registroService.insert(registro);
 
-        return "redirect:/lancamento/criar";
+        return "redirect:/receita/criar";
     }
-
 }
