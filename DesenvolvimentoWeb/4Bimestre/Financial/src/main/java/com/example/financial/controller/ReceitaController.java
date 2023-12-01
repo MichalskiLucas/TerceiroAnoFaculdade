@@ -66,9 +66,9 @@ public class ReceitaController {
     }
     @GetMapping(path = "/editar/{id}")
     public ModelAndView editarReceita(@PathVariable("id") Long id){
-        ModelAndView modelAndView = new ModelAndView("registro/inserir");
+        ModelAndView modelAndView = new ModelAndView("receita/inserir");
         modelAndView.addObject("categorias", categoriaService.findAll());
-        modelAndView.addObject("receita", registroService.findById(id));
+        modelAndView.addObject("registro", registroService.findById(id));
         return modelAndView;
     }
 

@@ -19,6 +19,9 @@ public class HomeController {
 
 
         ModelAndView modelAndView = new ModelAndView("/home/homePage");
+
+        modelAndView.addObject("totalLancamento", registroService.getTotalLancamento());
+        modelAndView.addObject("totalReceita", registroService.getTotalReceita());
         if (model.containsAttribute("registros"))
             modelAndView.addObject("registros", model.getAttribute("registros"));
         else{

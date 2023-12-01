@@ -11,7 +11,7 @@
 <header class="header purple-background">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/home">Financial</a>
+            <a class="navbar-brand" href="/">Financial</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,7 +29,9 @@
                     </li>
                 </ul>
             </div>
+
         </div>
+        <div class="col-md-4"></div>
     </nav>
 </header>
 <main>
@@ -39,19 +41,19 @@
             <div class="col-md-4">
                 <div class="card text-center p-4" >
                     <div class="card-title fs-4 fw-bold">Receita</div>
-                    <div class="card-body fs-3" th:text="'$:' + ${vlReceita}"></div>
+                    <div class="card-body fs-3" th:text="'$ ' + ${totalReceita}"></div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card text-center p-4" >
                     <div class="card-title fs-4 fw-bold">Despesa</div>
-                    <div class="card-body fs-3" th:text="'$:' + ${vlDespesa}"></div>
+                    <div class="card-body fs-3" th:text="'$ ' + ${totalLancamento}"></div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card text-center p-4" >
                     <div class="card-title fs-4 fw-bold">Líquido</div>
-                    <div class="card-body fs-3" th:text="'$:' + ${vlLiquido}"></div>
+                    <div class="card-body fs-3" th:text="'$ ' + ${ totalReceita - totalLancamento}"></div>
                 </div>
             </div>
         </div>
@@ -79,11 +81,6 @@
                     </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="center-button">
-                <button type="button" th:onclick="changeValues()" class="btn btn-primary">Alterar Valores</button>
             </div>
         </div>
     </div>

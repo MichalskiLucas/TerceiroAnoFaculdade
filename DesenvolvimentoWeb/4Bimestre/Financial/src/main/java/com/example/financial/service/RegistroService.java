@@ -6,6 +6,7 @@ import com.example.financial.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +40,27 @@ public class RegistroService {
         return registroRepository.saveAndFlush(registro);
     }
 
+    public BigDecimal getTotalLancamento(){
+        List<Registro> registros = registroRepository.findByTipoRegistroENUM(TipoRegistroENUM.DESPESA);
+        BigDecimal total = BigDecimal.ZERO;
+        BigDecimal vlLancamento;
+        for(int i = 0; i< registros.size(); i++){
+            vlLancamento = registros.get(i).getValor();
+          total =  total.add(vlLancamento);
+        }
+        return total;
+    }
+
+    public BigDecimal getTotalReceita(){
+        List<Registro> registros = registroRepository.findByTipoRegistroENUM(TipoRegistroENUM.RECEITA);
+        BigDecimal total = BigDecimal.ZERO;
+        BigDecimal vlLancamento;
+        for(int i = 0; i< registros.size(); i++){
+            vlLancamento = registros.get(i).getValor();
+            total =  total.add(vlLancamento);
+        }
+        return total;
+    }
     public void delete(Long id){
         registroRepository.deleteById(id);
     }
